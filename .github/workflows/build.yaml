@@ -1,11 +1,5 @@
 name: Build
-on:
-  push:
-    branches:
-      - master
-    paths:
-      - '.github/**'
-      - 'Dockerfile'
+on: [push]
 
 jobs:
   build:
