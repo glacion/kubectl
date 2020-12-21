@@ -15,11 +15,11 @@ jobs:
 
       - name: Get current date
         id: date
-        run: echo "date=$(date --iso-8601=second)" >> $GITHUB_ENV
+        run: echo "BUILD_DATE=$(date --iso-8601=second)" >> $GITHUB_ENV
 
       - name: Get latest version
         id: version
-        run: echo "version=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)" >> $GITHUB_ENV
+        run: echo "KUBERNETES_VERSION=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)" >> $GITHUB_ENV
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
@@ -35,8 +35,13 @@ jobs:
         id: docker
         with:
           push: true
-          tags: glacion/kubectl:latest,glacion/kubectl:${{ steps.version.outputs.version }}
-          build-args: version=${{ steps.version.outputs.version }},build_date=${{ steps.date.outputs.date }},revision=$GITHUB_SHA
+          tags: |
+            glacion/kubectl:latest
+            glacion/kubectl:$KUBERNETES_VERSION
+          build-args: |
+            version=$KUBERNETES_VERSION
+            build_date=$BUILD_DATE
+            revision=$GITHUB_SHA
 
       - name: Print digest
         run: echo "${{ steps.docker.outputs.digest }}"
