@@ -33,6 +33,7 @@ jobs:
 
       - name: Build and push image
         uses: docker/build-push-action@v2
+        id: docker
         with:
           context: .
           file: ./Dockerfile
@@ -44,3 +45,6 @@ jobs:
             - version=${{ steps.version.outputs.version }}
             - build_date=${{ steps.date.outputs.date }}
             - revision=$GITHUB_SHA
+
+      - name: Print digest
+        run: echo "${{ steps.docker.outputs.digest }}"
