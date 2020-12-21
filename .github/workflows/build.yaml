@@ -32,13 +32,13 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags:
-            - glacion/kubectl:latest
-            - glacion/kubectl:${{ steps.version.outputs.version }}
-          build-args:
-            - version=${{ steps.version.outputs.version }}
-            - build_date=${{ steps.date.outputs.date }}
-            - revision=$GITHUB_SHA
+          tags: |
+            glacion/kubectl:latest
+            glacion/kubectl:${{ steps.version.outputs.version }}
+          build-args: |
+            version=${{ steps.version.outputs.version }}
+            build_date=${{ steps.date.outputs.date }}
+            revision=$GITHUB_SHA
 
       - name: Print digest
         run: echo "${{ steps.docker.outputs.digest }}"
