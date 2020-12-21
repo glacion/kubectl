@@ -1,12 +1,25 @@
 name: Build
-on: [push]
-
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Dockerfile'
+      - '.github/**'
 jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Get current date
+        id: date
+        run: echo "date=$(date --iso-8601=second)" >> $GITHUB_ENV
+
+      - name: Get latest version
+        id: version
+        run: echo "version=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)" >> $GITHUB_ENV
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
@@ -16,14 +29,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Get current date
-        id: date
-        run: echo "date=$(date --iso-8601=second)" >> $GITHUB_ENV
-
-      - name: Get latest version
-        id: version
-        run: echo "version=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)" >> $GITHUB_ENV
 
       - name: Build and push image
         uses: docker/build-push-action@v2
