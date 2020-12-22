@@ -5,6 +5,7 @@ on:
       - main
     paths:
       - 'README.md'
+      - '.github/workflows/documentation.yaml'
 jobs:
   documentation:
     runs-on: ubuntu-18.04
