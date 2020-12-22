@@ -23,7 +23,7 @@ RUN apt install --no-install-recommends --yes gettext-base make curl ca-certific
 RUN curl --location \
     --fail \
     -o /usr/local/bin/kubectl \
-    "https://storage.googleapis.com/kubernetes-release/release/${VERSION}/bin/linux/amd64/kubectl"
+    "https://storage.googleapis.com/kubernetes-release/release/v${VERSION}/bin/linux/amd64/kubectl"
 
 RUN chmod +x /usr/local/bin/kubectl
 RUN rm -rf /var/lib/apt /var/cache
