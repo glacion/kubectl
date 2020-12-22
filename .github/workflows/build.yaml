@@ -2,7 +2,10 @@ name: build
 
 on:
   workflow_dispatch:
-
+    inputs:
+      version:
+        description: 'Version of kubectl'
+        required: true
 jobs:
   build:
     runs-on: ubuntu-18.04
@@ -13,10 +16,6 @@ jobs:
       - name: Get current date
         id: date
         run: echo "::set-output name=date::$(date --iso-8601=second)"
-
-      - name: Get latest version
-        id: version
-        run: echo "::set-output name=version::$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
@@ -35,8 +34,7 @@ jobs:
         with:
           push: true
           tags: |
-            glacion/kubectl:latest
-            glacion/kubectl:${{ steps.version.outputs.version }}
+            glacion/kubectl:${{ steps.inputs.version }}
           build-args: |
-            version=${{ steps.version.outputs.version }}
+            version=${{ steps.inputs.version }}
             build_date=${{ steps.date.outputs.date }}
