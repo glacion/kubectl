@@ -17,6 +17,9 @@ docker pull glacion/kubectl
 docker run --rm -it -v "${PWD}/.kube/config:/root/.kube/config" glacion/kubectl
 ```
 
+Alternatively, set `KUBECONFIG` variable to the path of the config's path.  
+The environment variable `VERSION` displays the version of kubectl that the image is built with.
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
