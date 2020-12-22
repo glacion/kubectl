@@ -40,10 +40,7 @@ jobs:
         with:
           push: true
           tags: glacion/kubectl:latest,glacion/kubectl:${{ steps.version.outputs.version }}
-          build-args: version=${{ steps.version.outputs.version }},build_date=${{ steps.date.outputs.date }},revision=$GITHUB_SHA
-
-      - name: Docker Hub Description
-        uses: peter-evans/dockerhub-description@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          build-args: |
+            version=${{ steps.version.outputs.version }}
+            build_date=${{ steps.date.outputs.date }}
+            revision=$GITHUB_SHA

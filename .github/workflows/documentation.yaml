@@ -1,0 +1,16 @@
+name: Build
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'README.md'
+jobs:
+  documentation:
+  runs-on: ubuntu-18.04
+  steps:
+    - name: Docker Hub Description
+      uses: peter-evans/dockerhub-description@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
