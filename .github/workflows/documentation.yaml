@@ -9,6 +9,9 @@ jobs:
   documentation:
     runs-on: ubuntu-18.04
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Docker Hub Description
         uses: peter-evans/dockerhub-description@v2
         with:
