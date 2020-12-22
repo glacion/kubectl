@@ -1,4 +1,4 @@
-![Build](https://github.com/glacion/kubectl/workflows/Build/badge.svg)
+![build](https://github.com/glacion/kubectl/workflows/build/badge.svg)
 [![Docker](https://img.shields.io/docker/v/glacion/kubectl)](https://hub.docker.com/r/glacion/kubectl)
 
 # Kubectl
@@ -16,6 +16,9 @@ docker pull glacion/kubectl
 ```bash
 docker run --rm -it -v "${PWD}/.kube/config:/root/.kube/config" glacion/kubectl
 ```
+
+Alternatively, set `KUBECONFIG` variable to the path of the config's path.  
+The environment variable `VERSION` displays the version of kubectl that the image is built with.
 
 ## Contributing
 
