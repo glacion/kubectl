@@ -1,4 +1,4 @@
-![Build](https://github.com/glacion/kubectl/workflows/Build/badge.svg)
+![build](https://github.com/glacion/kubectl/workflows/build/badge.svg)
 [![Docker](https://img.shields.io/docker/v/glacion/kubectl)](https://hub.docker.com/r/glacion/kubectl)
 
 # Kubectl
