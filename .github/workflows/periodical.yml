@@ -8,21 +8,26 @@ jobs:
   trigger:
     runs-on: ubuntu-18.04
     steps:
-      - name: Setup Poetry
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8.x'
+      
+      - name: Install Poetry
         uses: Gr1N/setup-poetry@v4
         with:
           poetry-version: '1.1.4'
 
-      - name: Checkout
-        uses: actions/checkout@v2
-        
-      - name: Get dependencies
+      - name: Get Dependencies
         env: 
           POETRY_VIRTUALENVS_IN_PROJECT: "true"
         working-directory: watcher
         run: poetry install --no-dev
         
-      - name: Dispatch
+      - name: Dispatch Events
         working-directory: watcher
         run: .venv/bin/python main.py
 
