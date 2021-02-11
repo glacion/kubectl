@@ -19,10 +19,10 @@ jobs:
       - name: Get dependencies
         env: 
           POETRY_VIRTUALENVS_IN_PROJECT: "true"
-        working-directory: "$GITHUB_WORKSPACE/watcher"
+        working-directory: watcher
         run: poetry install --no-dev
         
       - name: Dispatch
-        working-directory: "$GITHUB_WORKSPACE/watcher"
+        working-directory: watcher
         run: .venv/bin/python main.py
 
