@@ -1,0 +1,28 @@
+name: periodical
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  trigger:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Setup Poetry
+        uses: Gr1N/setup-poetry@v4
+        with:
+          poetry-version: '1.1.4'
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Get dependencies
+        env: 
+          POETRY_VIRTUALENVS_IN_PROJECT: "true"
+        working-directory: "$GITHUB_WORKSPACE/watcher"
+        run: poetry install --no-dev
+        
+      - name: Dispatch
+        working-directory: "$GITHUB_WORKSPACE/watcher"
+        run: .venv/bin/python main.py
+
