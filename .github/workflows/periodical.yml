@@ -37,5 +37,7 @@ jobs:
         
       - name: Dispatch Events
         working-directory: watcher
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
         run: .venv/bin/python main.py
 
