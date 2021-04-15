@@ -70,7 +70,9 @@ def dispatch(versions, workflow):
         logging.info(f"dispatching build request for version {version}")
         response = workflow.create_dispatch("main", {"version": str(version)})
         if not response:
+            from sys import exit
             logging.error("failed to dispatch")
+            exit(1)
             break
         logging.info("sleeping for 5 seconds")
         sleep(5)
