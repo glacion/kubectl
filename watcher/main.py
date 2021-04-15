@@ -70,10 +70,8 @@ def dispatch(versions, workflow):
         logging.info(f"dispatching build request for version {version}")
         response = workflow.create_dispatch("main", {"version": str(version)})
         if not response:
-            from sys import exit
             logging.error("failed to dispatch")
             exit(1)
-            break
         logging.info("sleeping for 5 seconds")
         sleep(5)
 
@@ -82,6 +80,9 @@ logging.basicConfig(level=logging.INFO)
 load_dotenv()
 
 access_token = os.getenv("TOKEN")
+if not access_token:
+    logging.error("required environment variable TOKEN not found")
+    exit(1)
 github_client = Github(access_token)
 workflow = github_client.get_repo("glacion/kubectl").get_workflow("build.yaml")
 
