@@ -4,13 +4,13 @@ ARG version
 ARG build_date
 
 LABEL org.opencontainers.image.licenses="MIT"
-LABEL org.opencontainers.image.authors="Ahmetcan Güvendiren <ahmtcngvndrn@gmail.com>"
+LABEL org.opencontainers.image.authors="Can Güvendiren <can@glacion.com>"
 LABEL org.opencontainers.image.created=${build_date}
 LABEL org.opencontainers.image.url="https://github.com/glacion/kubectl"
 LABEL org.opencontainers.image.documentation="https://github.com/glacion/kubectl"
 LABEL org.opencontainers.image.source="https://github.com/glacion/kubectl"
 LABEL org.opencontainers.image.version=${version}
-LABEL org.opencontainers.image.vendor="Ahmetcan Güvendiren <ahmtcngvndrn@gmail.com>"
+LABEL org.opencontainers.image.vendor="Can Güvendiren <can@glacion.com>"
 LABEL org.opencontainers.image.title="kubectl"
 LABEL org.opencontainers.image.description="image that contains kubectl, make, envsubst, and curl"
 
